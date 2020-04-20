@@ -12,14 +12,17 @@
         .col.text-center
           b Nothing to do! uhuu
       <template v-else>
-        .row
-          div(class="col font-weight-bold" ) Task 
-          div(class="col-2 font-weight-bold" ) Done
-        .row(v-for="t in filteredTasks" :key="t.action")
-          .col {{ t.action }}
-          .col-2
-            input(type='checkbox' class="form-check-input" v-model="t.done" ) 
-            | {{t.done}}
+        table.table.table-light.table-striped.table-bordered.table-sm
+          thead
+            tr
+              th Task
+              th Done
+          tbody
+            tr(v-for="t in filteredTasks" :key="t.action")
+              td {{ t.action }} 
+              td
+                input(type='checkbox' class="form-check-input" v-model="t.done" )
+                | {{t.done}}  
       </template>
       .row.bg-secondary.py-2.mt-2.text-white
         .col.text-center 
@@ -27,7 +30,7 @@
             input.form-check-input#my-input(type='checkbox' v-model="hideCompleted" )
             label.form-check-label(for='my-input') Hide completed tasks
         .col.text-center
-            button.btn.btn.sm.btn-warning(@click="deleteCompleted") Delete
+          button.btn.btn.sm.btn-warning(@click="deleteCompleted") Delete
 
 </template>
 
